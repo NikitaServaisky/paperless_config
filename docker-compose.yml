@@ -1,0 +1,31 @@
+services:
+  paperless:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: paperless
+    restart: unless-stopped
+    depends_on:
+      - db
+    networks:
+      - nextcloud-net
+    volumes:
+      # settings and data on ssd for quick speed
+      - ./data:/usr/src/paperless/data
+      - ./export:/usr/src/paperless/export
+      # work directories on the raid
+      - /mnt/storage/media/paperless/media:/usr/src/paperless/media
+      - /mnt/storage/media/paperless/consume:/usr/src/paperless/consume
+    environment:
+      # match to Mariadb for Nextcloud
+      PAPERLESS_DBENGINE: mariadb
+      PAPERLESS_DBHOST: db
+      PAPERLESS_DBUSER: ${MYSQL_USER}
+      PAPERLESS_DBPASS: ${DB_PASS}
+      PAPERLESS_DBNAME: ${MYSQL_DATABASE}
+      # general settings
+      PAPERLESS_OCR_LANGUAGE: heb+eng
+      PAPERLESS_TIME_ZONE: Asia/Jerusalem
+      PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY}
+
+networks:
+  nextcloud-net:
+    external: true
