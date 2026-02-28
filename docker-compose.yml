@@ -3,8 +3,8 @@ services:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     container_name: paperless
     restart: unless-stopped
-    depends_on:
-      - db
+   # depends_on:
+    #  - db
     networks:
       - nextcloud-net
     volumes:
