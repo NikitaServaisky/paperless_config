@@ -29,3 +29,5 @@ services:
 networks:
   nextcloud-net:
     external: true
+    # name of external network
+    name: config_nextcloud-net
