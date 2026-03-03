@@ -82,7 +82,7 @@ services:
       PAPERLESS_CONSUMER_IGNORE_DUPLICATES: "true"
       
       # FIX: Use new non-deprecated OCR settings
-      PAPERLESS_OCR_SKIP_ARCHIVE_FILE: "always"
+      PAPERLESS_OCR_SKIP_ARCHIVE_FILE: never
       
       PAPERLESS_OCR_USER_ARGS: "--oem 1 --psm 3"
       PAPERLESS_FILENAME_FORMAT: "{{path}}/{{title}}"
