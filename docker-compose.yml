@@ -62,4 +62,4 @@ services:
 networks:
   internal-net:
     external: true
-    name: nextcloud-net
+    name: config_nextcloud-net
