@@ -20,7 +20,6 @@ services:
     networks:
       - internal-net
 
-  # Gotenberg: Required for converting Office docs (Docx, Xlsx) to PDF
   gotenberg:
     image: gotenberg/gotenberg:8
     container_name: paperless-gotenberg
@@ -31,7 +30,6 @@ services:
     networks:
       - internal-net
 
-  # Tika: Extracts text from Office documents and other complex formats
   tika:
     image: apache/tika:latest
     container_name: paperless-tika
@@ -53,9 +51,9 @@ services:
     volumes:
       - ./data:/usr/src/paperless/data
       - ./export:/usr/src/paperless/export
-      # Correct path to Admin_cloud as found in search
-      - /mnt/storage/media/nextcloud/userdata/Admin_cloud/files:/usr/src/paperless/consume
-      - /mnt/storage/media/nextcloud/userdata/Admin_cloud/files:/usr/src/paperless/media
+      # Specific path to Documents to avoid Nextcloud system files
+      - /mnt/storage/media/nextcloud/userdata/Admin_cloud/files/Documents:/usr/src/paperless/consume
+      - /mnt/storage/media/nextcloud/userdata/Admin_cloud/files/Documents:/usr/src/paperless/media
     environment:
       PAPERLESS_REDIS: redis://paperless-redis:6379
       PAPERLESS_DBENGINE: mariadb
@@ -64,25 +62,23 @@ services:
       PAPERLESS_DBPASS: ${PAPERLESS_DB_PASS}
       PAPERLESS_DBNAME: ${PAPERLESS_DB_NAME}
       
-      # Integration with Tika and Gotenberg
       PAPERLESS_TIKA_ENABLED: 1
       PAPERLESS_TIKA_ENDPOINT: http://tika:9998
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://gotenberg:3000
       
-      PAPERLESS_OCR_LANGUAGES: ${PAPERLESS_OCR_LANGUAGES}
-      PAPERLESS_OCR_LANGUAGE: ${PAPERLESS_OCR_LANGUAGE}
+      # Language settings for Hebrew support
+      PAPERLESS_OCR_LANGUAGES: heb eng
+      PAPERLESS_OCR_LANGUAGE: heb
       PAPERLESS_TIME_ZONE: Asia/Jerusalem
       PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY}
       PAPERLESS_CSRF_TRUSTED_ORIGINS: ${PAPERLESS_CSRF_TRUSTED_ORIGINS}
       
-      # OCR and Consumer settings
       PAPERLESS_CONSUMER_DELETE_ON_SUCCESS: "false"
       PAPERLESS_CONSUMER_RECURSIVE: "true"
       PAPERLESS_CONSUMER_IGNORE_DUPLICATES: "true"
-      PAPERLESS_OCR_MODE: "redo"
+      # Skip OCR if text already exists (best for digital PDFs)
+      PAPERLESS_OCR_MODE: skip_noarchive
       PAPERLESS_OCR_USER_ARGS: "--oem 1 --psm 3"
-      PAPERLESS_OCR_DESKEW: "true"
-      PAPERLESS_OCR_ROTATE_PAGES: "true"
       PAPERLESS_FILENAME_FORMAT: "{{path}}/{{title}}"
 
 networks:
