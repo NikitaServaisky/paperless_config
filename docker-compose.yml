@@ -49,11 +49,11 @@ services:
       PAPERLESS_CSRF_TRUSTED_ORIGINS: ${PAPERLESS_CSRF_TRUSTED_ORIGINS}
       
       # settings of OCR 
-      PAPERLESS_CONSUMER_DELETE_ON_SUCCESS: "false" # do not remove everything
+      PAPERLESS_CONSUMER_DELETE_ON_SUCCESS: "false"  # do not remove everything
       PAPERLESS_CONSUMER_RECURSIVE: "true"           # work with all directories
       PAPERLESS_CONSUMER_IGNORE_DUPLICATES: "true"   # do not process two times
       PAPERLESS_OCR_MODE: "redo"                     # create text layer into the pdf (Searchable PDF)
-      PAPERLESS_OCR_USER_ARGS: '{"oem": 1, "psm": 3}' # valid for handwriting
+      PAPERLESS_OCR_USER_ARGS: '{"oem":1,"psm":3}'   # valid for handwriting
       PAPERLESS_OCR_DESKEW: "true"                   # straightens curved pages
       PAPERLESS_OCR_ROTATE_PAGES: "true"             # automatically rotate pages if needed
       # saves processing file in same path and name
