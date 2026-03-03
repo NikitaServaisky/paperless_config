@@ -71,7 +71,7 @@ services:
       PAPERLESS_OCR_LANGUAGES: heb eng
       PAPERLESS_OCR_LANGUAGE: heb
       PAPERLESS_OCR_MODE: force
-      PAPERLESS_OCR_CLEAN: "true"
+      PAPERLESS_OCR_CLEAN: clean
       
       PAPERLESS_TIME_ZONE: Asia/Jerusalem
       PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY}
