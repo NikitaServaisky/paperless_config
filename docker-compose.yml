@@ -70,21 +70,23 @@ services:
       # FIX: Install Hebrew package on startup
       PAPERLESS_OCR_LANGUAGES: heb eng
       PAPERLESS_OCR_LANGUAGE: heb
+      PAPERLESS_OCR_MODE: force_ocr
       
       PAPERLESS_TIME_ZONE: Asia/Jerusalem
       PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY}
       PAPERLESS_CSRF_TRUSTED_ORIGINS: ${PAPERLESS_CSRF_TRUSTED_ORIGINS}
       
-      PAPERLESS_CONSUMER_DELETE_ON_SUCCESS: "false"
+      PAPERLESS_CONSUMER_DELETE_ON_SUCCESS: "true"
       PAPERLESS_CONSUMER_RECURSIVE: "true"
       PAPERLESS_CONSUMER_IGNORE_DUPLICATES: "true"
       
       # FIX: Use new non-deprecated OCR settings
-      PAPERLESS_OCR_MODE: skip
       PAPERLESS_OCR_SKIP_ARCHIVE_FILE: "true"
       
       PAPERLESS_OCR_USER_ARGS: "--oem 1 --psm 3"
       PAPERLESS_FILENAME_FORMAT: "{{path}}/{{title}}"
+      USER_ID: 1000
+      GROUP_ID: 1000
 
 networks:
   internal-net:
