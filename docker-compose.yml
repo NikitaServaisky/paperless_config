@@ -33,8 +33,8 @@ services:
       - ./data:/usr/src/paperless/data
       - ./export:/usr/src/paperless/export
       # paperless must sit on the path of nextcloud to scan all files when i upload
-      - /mnt/storage/media/nextcloud/userdata:/usr/src/paperless/consume
-      - /mnt/storage/media/nextcloud/userdata:/usr/src/paperless/media
+      - /mnt/storage/media/nextcloud/userdata/nikita/files:/usr/src/paperless/consume
+      - /mnt/storage/media/nextcloud/userdata/nikita/files:/usr/src/paperless/media
     environment:
       PAPERLESS_REDIS: redis://paperless-redis:6379
       PAPERLESS_DBENGINE: mariadb
