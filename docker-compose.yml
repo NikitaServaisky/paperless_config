@@ -27,7 +27,6 @@ services:
     restart: always
     command:
       - "gotenberg"
-      - "--modules-libreoffice-disable-check-update"
     networks:
       - internal-net
 
