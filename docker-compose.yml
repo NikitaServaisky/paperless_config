@@ -87,7 +87,6 @@ services:
       PAPERLESS_FILENAME_FORMAT: "{path}/{title}"
       USER_ID: 1000
       GROUP_ID: 1000
-      PAPERLESS_POST_CONSUME_SCRIPT: "/usr/src/paperless/data/scan_nextcloud.sh"
 
 networks:
   internal-net:
