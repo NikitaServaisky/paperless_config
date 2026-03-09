@@ -52,8 +52,8 @@ services:
       - ./data:/usr/src/paperless/data
       - ./export:/usr/src/paperless/export
       # Specific path to Documents to avoid Nextcloud system files
-      - /mnt/storage/media/nextcloud/userdata/Admin_cloud/files/Documents/documents:/usr/src/paperless/consume
-      - /mnt/storage/media/nextcloud/userdata/Admin_cloud/files/Documents/documents:/usr/src/paperless/media
+      - /mnt/storage/media/nextcloud/userdata/Admin_cloud/files/Documents:/usr/src/paperless/consume
+      - /mnt/storage/media/nextcloud/userdata/Admin_cloud/files/Documents:/usr/src/paperless/media
     environment:
       PAPERLESS_REDIS: redis://paperless-redis:6379
       PAPERLESS_DBENGINE: mariadb
